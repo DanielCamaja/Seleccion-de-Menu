@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
+import com.example.gycsol.Adaptadores.MyAdapter;
+import com.example.gycsol.listados.ListItem;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +33,7 @@ import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    String URL_DATA = "https://next.json-generator.com/api/json/get/4knO1PKwO";
+    String URL_DATA = "https://api.casino.gycsol.cl/api/Tablet/EnrolarEtapa01?userSecret=237295307&userPass=123&deviceId=123456";
     TextView fecha, hora, dia;
     ImageView img, logo1;
 
@@ -52,13 +53,13 @@ public class MainActivity2 extends AppCompatActivity {
         hora = (TextView) findViewById(R.id.hora);
         logo1 = (ImageView) findViewById(R.id.logo);
         img = (ImageView) findViewById(R.id.imageView11);
-        Glide.with(this)
+        Picasso.get()
                 .load("https://casinogycsol.s3-sa-east-1.amazonaws.com/Logos/asmar.png")
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(img);
 
-        Glide.with(this)
+        Picasso.get()
                 .load("https://casinogycsol.s3-sa-east-1.amazonaws.com/Logos/sodexo.png")
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground)
@@ -92,15 +93,14 @@ public class MainActivity2 extends AppCompatActivity {
                 progressDialog.dismiss();
                 try {
                     JSONObject jsonObject=new JSONObject(response);
-                    JSONArray jsonArray=jsonObject.getJSONArray("MyData");
+                    JSONArray jsonArray=jsonObject.getJSONArray("lineas");
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject rcive=jsonArray.getJSONObject(i);
                         ListItem Item=new ListItem(
-                                rcive.getString("headText"),
-                                rcive.getInt("id"),
-                                rcive.getString("descText"),
-                                rcive.getString("imageLocation")
+                                rcive.getString("comedor"),
+                                rcive.getString("descripcionLinea"),
+                                rcive.getString("urlMandante")
                         );
                         listItems.add(Item);
                     }
