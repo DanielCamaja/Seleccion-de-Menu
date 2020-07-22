@@ -1,4 +1,4 @@
-package com.example.gycsol;
+package com.example.gycsol.Adaptadores;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gycsol.R;
+import com.example.gycsol.listados.ListItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

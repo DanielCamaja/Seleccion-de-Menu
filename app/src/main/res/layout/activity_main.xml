@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -23,14 +23,14 @@
         android:layout_marginEnd="84dp"
         android:background="@drawable/userl"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/emaillogin"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.484" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/emaillogin"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:background="@color/white"
@@ -48,14 +48,14 @@
         android:layout_marginStart="340dp"
         android:background="@drawable/clavel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintEnd_toStartOf="@+id/passwordlogin"
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.118" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/passwordlogin"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:background="@color/white"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.616"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/emaillogin"
         app:layout_constraintVertical_bias="0.118" />
 
     <ImageButton

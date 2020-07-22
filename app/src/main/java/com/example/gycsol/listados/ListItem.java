@@ -1,15 +1,13 @@
-package com.example.gycsol;
+package com.example.gycsol.listados;
 
 public class ListItem {
 
     private String comedor;
-    private int linea;
     private String descripcionLinea;
     private String urlMandante;
 
-    public ListItem(String comedor, int linea, String descripcionLinea, String urlMandante) {
+    public ListItem(String comedor, String descripcionLinea, String urlMandante) {
         this.comedor = comedor;
-        this.linea = linea;
         this.descripcionLinea = descripcionLinea;
         this.urlMandante = urlMandante;
     }
@@ -20,14 +18,6 @@ public class ListItem {
 
     public void setComedor(String comedor) {
         this.comedor = comedor;
-    }
-
-    public int getLinea() {
-        return linea;
-    }
-
-    public void setLinea(int linea) {
-        this.linea = linea;
     }
 
     public String getDescripcionLinea() {
