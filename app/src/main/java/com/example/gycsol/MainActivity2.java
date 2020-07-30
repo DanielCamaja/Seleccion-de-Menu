@@ -37,6 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
     TextView fecha, hora, dia;
     ImageView img, logo1;
 
+
     RecyclerView recyclerView;
     MyAdapter myAdapter;
     ProgressDialog progressDialog;
@@ -83,6 +84,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void loadrecycler()
     {
+        
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loooding...");
         progressDialog.show();
@@ -99,8 +101,7 @@ public class MainActivity2 extends AppCompatActivity {
                         JSONObject rcive=jsonArray.getJSONObject(i);
                         ListItem Item=new ListItem(
                                 rcive.getString("comedor"),
-                                rcive.getString("descripcionLinea"),
-                                rcive.getString("urlMandante")
+                                rcive.getString("descripcionLinea")
                         );
                         listItems.add(Item);
                     }
@@ -130,6 +131,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void siguiente(View view) {
+
         Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
         startActivity(intent);
     }

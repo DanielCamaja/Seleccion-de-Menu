@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gycsol.R;
 import com.example.gycsol.listados.ListComedor;
+import com.example.gycsol.listados.ListadoStock;
 
 import java.util.List;
 
@@ -36,9 +37,12 @@ public class AdapterComedor extends RecyclerView.Adapter<AdapterComedor.ViewHold
     @Override
     public void onBindViewHolder(@NonNull AdapterComedor.ViewHolder holder, int position) {
         final ListComedor listComedor = listacomedor.get(position);
-        holder.textonum.setText(listComedor.getId());
-        holder.textnom.setText(listComedor.getComedor());
-        holder.menu.setText(listComedor.getDescripcionLinea());
+        holder.idpedido.setText(listComedor.getId());
+        holder.rutpe.setText(listComedor.getComedor());
+        holder.nombretr.setText(listComedor.getDescripcionLinea());
+        holder.menu.setText(listComedor.getDescMenu());
+        holder.hora.setText(listComedor.getHoraConsumo());
+        holder.empresa.setText(listComedor.getNombreEmpresa());
 
 
 
@@ -51,17 +55,23 @@ public class AdapterComedor extends RecyclerView.Adapter<AdapterComedor.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textonum;
-        TextView textnom;
+        TextView idpedido;
+        TextView rutpe;
+        TextView nombretr;
         TextView menu;
-        ImageView imagen;
+        TextView hora;
+        TextView empresa;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textonum = (TextView) itemView.findViewById(R.id.textno);
-            textnom = (TextView) itemView.findViewById(R.id.textonombrec);
+            idpedido = (TextView) itemView.findViewById(R.id.textno);
+            rutpe = (TextView) itemView.findViewById(R.id.textrut);
+            nombretr = (TextView) itemView.findViewById(R.id.textonombrec);
             menu = (TextView) itemView.findViewById(R.id.textomenu);
+            hora = (TextView) itemView.findViewById(R.id.texthora);
+            empresa = (TextView) itemView.findViewById(R.id.textempresa);
 
         }
     }

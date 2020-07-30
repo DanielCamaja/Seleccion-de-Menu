@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,9 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gycsol.Adaptadores.AdapterComedor;
-import com.example.gycsol.Adaptadores.MyAdapter;
+import com.example.gycsol.Adaptadores.AdapterStock;
 import com.example.gycsol.listados.ListComedor;
-import com.example.gycsol.listados.ListItem;
+import com.example.gycsol.listados.ListadoStock;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -35,14 +36,19 @@ import java.util.List;
 
 public class MainActivity3 extends AppCompatActivity {
 
-    String URL_DATA = "https://api.casino.gycsol.cl/api/Tablet/EnrolarEtapa01?userSecret=237295307&userPass=123&deviceId=123456";
+    String URL_DATA = "https://api.casino.gycsol.cl/api/Tablet/ConsultaConsumo?userToken=4fb8c059-bd52-4d58-a2da-20808d503056&linea=1&fechaHoraActual=2020-7-24 14:30:59&fechaHoraPrevia=2020-7-24 14:25:59";
+    String URL = "https://api.casino.gycsol.cl/api/Tablet/ConsultaConsumo?userToken=4fb8c059-bd52-4d58-a2da-20808d503056&linea=1&fechaHoraActual=2020-7-24 14:30:59&fechaHoraPrevia=2020-7-24 14:25:59";
+
     TextView fecha, hora, dia;
     ImageView imagen, logom;
+    Button btnc;
 
-    RecyclerView recyclerme;
+    RecyclerView recyclerme, recycler;
     AdapterComedor adapterComedor;
+    AdapterStock adapterStock;
     ProgressDialog progressDialog;
     private List<ListComedor> listComedors;
+    private List<ListadoStock> listadoStocks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,37 +87,46 @@ public class MainActivity3 extends AppCompatActivity {
         recyclerme = (RecyclerView) findViewById(R.id.recyclermenu);
         recyclerme.setHasFixedSize(true);
         recyclerme.setLayoutManager(new LinearLayoutManager(this));
-        listComedors = new ArrayList<>();
+
+        recycler = (RecyclerView) findViewById(R.id.recyclerca);
+        recycler.setHasFixedSize(true);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+
+        listComedors = new ArrayList<ListComedor>();
+        listadoStocks = new ArrayList<>();
+
         loadmenucomedor();
+        //loadboton();
 
     }
+/*
+    private void loadboton() {
 
-    private void loadmenucomedor() {
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loooding...");
         progressDialog.show();
 
-        final StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
+        final StringRequest stringRequest=new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();
                 try {
                     JSONObject jsonObject=new JSONObject(response);
-                    JSONArray jsonArray=jsonObject.getJSONArray("lineas");
+                    JSONArray jsonArray=jsonObject.getJSONArray("stocks");
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject rcive=jsonArray.getJSONObject(i);
-                        ListComedor Item=new ListComedor(
-                                rcive.getString("linea"),
-                                rcive.getString("comedor"),
-                                rcive.getString("descripcionLinea"),
-                                rcive.getString("urlMandante")
-                        );
-                        listComedors.add(Item);
-                    }
-                    adapterComedor=new AdapterComedor(listComedors,getApplicationContext());
+                        ListadoStock itemst=new ListadoStock(
+                                rcive.getString("descMenu")
 
-                    recyclerme.setAdapter(adapterComedor);
+                        );
+                        listadoStocks.add(itemst);
+
+                    }
+                    adapterStock=new AdapterStock(listadoStocks,getApplicationContext());
+
+                    recycler.setAdapter(adapterStock);
+//
 
                 }catch (JSONException e)
                 {
@@ -131,6 +146,62 @@ public class MainActivity3 extends AppCompatActivity {
         );
         RequestQueue quque= Volley.newRequestQueue(this);
         quque.add(stringRequest);
+
+    }
+
+*/
+    private void loadmenucomedor() {
+
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Loooding...");
+        progressDialog.show();
+
+        final StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressDialog.dismiss();
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray=jsonObject.getJSONArray("consumo");
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        JSONObject rcive=jsonArray.getJSONObject(i);
+                        ListComedor Item=new ListComedor(
+                                rcive.getString("idPedido"),
+                                rcive.getString("rutTrabajador"),
+                                rcive.getString("nombreTrabajador"),
+                                rcive.getString("descMenu"),
+                                rcive.getString("horaConsumo"),
+                                rcive.getString("nombreEmpresa")
+
+                        );
+                        listComedors.add(Item);
+
+                    }
+                    adapterComedor=new AdapterComedor(listComedors,getApplicationContext());
+
+                    recyclerme.setAdapter(adapterComedor);
+//
+
+                }catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(MainActivity3.this,"Server error",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+        );
+        RequestQueue quque= Volley.newRequestQueue(this);
+        quque.add(stringRequest);
+
     }
 
     public void Cerrar(View view) {
@@ -138,4 +209,7 @@ public class MainActivity3 extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
+
 }

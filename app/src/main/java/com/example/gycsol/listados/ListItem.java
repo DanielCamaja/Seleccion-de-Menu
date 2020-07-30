@@ -4,12 +4,10 @@ public class ListItem {
 
     private String comedor;
     private String descripcionLinea;
-    private String urlMandante;
 
-    public ListItem(String comedor, String descripcionLinea, String urlMandante) {
+    public ListItem(String comedor, String descripcionLinea) {
         this.comedor = comedor;
         this.descripcionLinea = descripcionLinea;
-        this.urlMandante = urlMandante;
     }
 
     public String getComedor() {
@@ -26,13 +24,5 @@ public class ListItem {
 
     public void setDescripcionLinea(String descripcionLinea) {
         this.descripcionLinea = descripcionLinea;
-    }
-
-    public String getUrlMandante() {
-        return urlMandante;
-    }
-
-    public void setUrlMandante(String urlMandante) {
-        this.urlMandante = urlMandante;
     }
 }

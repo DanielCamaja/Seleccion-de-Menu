@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class MainActivity5 extends AppCompatActivity {
 
     TextView textfecha, texthora;
     ImageView imagenlogofi, logofi;
+    ImageView img, logo1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,19 @@ public class MainActivity5 extends AppCompatActivity {
 
         textfecha = (TextView) findViewById(R.id.textfechafi);
         texthora = (TextView) findViewById(R.id.horafi);
-        imagenlogofi = (ImageView) findViewById(R.id.imageView55);
+        logo1 = (ImageView) findViewById(R.id.logo);
+        img = (ImageView) findViewById(R.id.imageView11);
+        Picasso.get()
+                .load("https://casinogycsol.s3-sa-east-1.amazonaws.com/Logos/asmar.png")
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(img);
+
+        Picasso.get()
+                .load("https://casinogycsol.s3-sa-east-1.amazonaws.com/Logos/sodexo.png")
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(logo1);
 
 
         //fecha del dia

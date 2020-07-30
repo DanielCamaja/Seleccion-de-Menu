@@ -5,13 +5,17 @@ public class ListComedor {
     private String id;
     private String comedor;
     private String descripcionLinea;
-    private String urlMandante;
+    private String descMenu;
+    private String horaConsumo;
+    private String nombreEmpresa;
 
-    public ListComedor(String id, String comedor, String descripcionLinea, String urlMandante) {
+    public ListComedor(String id, String comedor, String descripcionLinea, String descMenu, String horaConsumo, String nombreEmpresa) {
         this.id = id;
         this.comedor = comedor;
         this.descripcionLinea = descripcionLinea;
-        this.urlMandante = urlMandante;
+        this.descMenu = descMenu;
+        this.horaConsumo = horaConsumo;
+        this.nombreEmpresa = nombreEmpresa;
     }
 
     public String getId() {
@@ -38,11 +42,27 @@ public class ListComedor {
         this.descripcionLinea = descripcionLinea;
     }
 
-    public String getUrlMandante() {
-        return urlMandante;
+    public String getDescMenu() {
+        return descMenu;
     }
 
-    public void setUrlMandante(String urlMandante) {
-        this.urlMandante = urlMandante;
+    public void setDescMenu(String descMenu) {
+        this.descMenu = descMenu;
+    }
+
+    public String getHoraConsumo() {
+        return horaConsumo;
+    }
+
+    public void setHoraConsumo(String horaConsumo) {
+        this.horaConsumo = horaConsumo;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
     }
 }
